@@ -27,3 +27,9 @@ test('test', async ({ page }) => {
     //karena element benar-benar terhapus dari DOM
 });
 
+////*[@id="content"]/div/button
+///html/body/div[2]/div/div/button
+//bikin file locator untuk pemanggilan
+//belajar cara handle web load yang cukup lama
+//belajar call api
+//coba
