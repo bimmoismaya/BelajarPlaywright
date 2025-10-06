@@ -29,7 +29,14 @@ test('test', async ({ page }) => {
 
 ////*[@id="content"]/div/button
 ///html/body/div[2]/div/div/button
+// bikin flow dimana bisa skip login
 //bikin file locator untuk pemanggilan
 //belajar cara handle web load yang cukup lama
 //belajar call api
-//coba
+//ssh-keygen -t ed25519 -C "ismaya.bimmo@gmail.com"
+//ssh-add c:/Users/USER/.ssh/id_ed25519
+//$ clip < ~/.ssh/id_ed25519.pub
+//ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJ3XxA4s1rWA0pk2MLBMNmqJgz3YhjmgKV2uGW5+x9Oz ismaya.bimmo@gmail.com
+//git fetch, git branch
+//git branch --set-upstream-to=origin/master master
+// git add -u
