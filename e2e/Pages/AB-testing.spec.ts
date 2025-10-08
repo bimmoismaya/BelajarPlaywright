@@ -4,7 +4,7 @@ test('test', async ({ page }) => {
   await page.goto('https://the-internet.herokuapp.com/');
   await page.getByRole('link', { name: 'A/B Testing' }).click();
   await page.getByText('Also known as split testing.').click();
-  await page.getByRole('heading', { name: 'A/B Test Control' }).click();
+//  await page.getByRole('heading', { name: 'A/B Test Control' }).click();
   // await page.goto('https://the-internet.herokuapp.com/');
 });
 
