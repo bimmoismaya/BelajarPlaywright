@@ -7,6 +7,7 @@ export class LoginPage {
     readonly buttonLogout: Locator;
     readonly usernameInput: Locator;
     readonly passwordInput: Locator;
+    readonly flashMessage: Locator;
 
     constructor(page: Page) {
         this.page = page;
@@ -14,8 +15,7 @@ export class LoginPage {
         this.passwordInput = page.locator('#password');
         this.buttonLogin = page.getByRole('button', { name: 'Login' });
         this.buttonLogout = page.getByRole('button', { name: 'Logout' });
-        // this.flashMessage = page.locator('#flash');
-
+        this.flashMessage = page.locator('#flash');
     }
 
     async goto() {
@@ -24,7 +24,6 @@ export class LoginPage {
 
     async inputLogin(username: string, password: string) {
         await this.usernameInput.fill(username);
-
         await this.passwordInput.fill(password);
     }
 
@@ -32,13 +31,18 @@ export class LoginPage {
         await this.buttonLogin.click();
     }
 
+    async expectLoginSuccess() {
+        await expect(this.page).toHaveURL(/secure/);
+        await expect(this.flashMessage).toContainText('You logged into a secure area!');
+        await expect(this.buttonLogout).toBeVisible();
+    }
 
-    // async expectLoginSuccess() {
-    //     await expect(this.page).toHaveURL(/secure/);
-    //     await expect(this.flashMessage).toContainText('You logged into a secure area!');
-    // }
+    async expectLoginError(expectedMessage: string) {
+        await expect(this.flashMessage).toContainText(expectedMessage);
+    }
 
-    // async clickButtonLogout() {
-    //     await this.buttonLogout.click();
-    // }
+    async clickButtonLogout() {
+        await this.buttonLogout.click();
+        await expect(this.page).toHaveURL(/login/);
+    }
 }
