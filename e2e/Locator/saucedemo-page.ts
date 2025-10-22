@@ -88,7 +88,7 @@ export class SauceDemoInventoryPage {
     }
 
     async getCartItemCount(): Promise<number> {
-        try {
+          try {
             const badge = await this.cartBadge.textContent();
             return parseInt(badge || '0', 10);
         } catch {
@@ -126,7 +126,7 @@ export class SauceDemoCartPage {
 
     constructor(page: Page) {
         this.page = page;
-        this.cartItems = page.locator('[data-test="cart-list"] [data-test="cart-item"]');
+        this.cartItems = page.locator('[data-test="cart-list"]');
         this.checkoutButton = page.locator('[data-test="checkout"]');
         this.continueShoppingButton = page.locator('[data-test="continue-shopping"]');
     }
