@@ -153,7 +153,6 @@ test.describe('SauceDemo Shopping Cart & Checkout', { tag: '@saucedemo' }, () =>
         // Add product and navigate to cart
         await inventoryPage.addProductToCart(productName);
         await inventoryPage.openCart();
-
         await cartPage.expectCartPage();
         const itemCount = await cartPage.getCartItemCount();
         expect(itemCount).toBe(1);
