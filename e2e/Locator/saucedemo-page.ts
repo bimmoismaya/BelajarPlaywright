@@ -122,13 +122,13 @@ export class SauceDemoCartPage {
     readonly cartUrl: string = 'https://www.saucedemo.com/cart.html';
     readonly cartItems: Locator;
     readonly checkoutButton: Locator;
-    readonly continueShopping: Locator;
+    readonly continueShoppingButton: Locator;
 
     constructor(page: Page) {
         this.page = page;
         this.cartItems = page.locator('[data-test="cart-list"] [data-test="cart-item"]');
         this.checkoutButton = page.locator('[data-test="checkout"]');
-        this.continueShopping = page.locator('[data-test="continue-shopping"]');
+        this.continueShoppingButton = page.locator('[data-test="continue-shopping"]');
     }
 
     async expectCartPage() {
@@ -144,7 +144,7 @@ export class SauceDemoCartPage {
     }
 
     async continueShopping() {
-        await this.continueShopping.click();
+        await this.continueShoppingButton.click();
     }
 }
 
