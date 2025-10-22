@@ -14,7 +14,7 @@ export class LoginPage {
         this.usernameInput = page.locator('#username');
         this.passwordInput = page.locator('#password');
         this.buttonLogin = page.getByRole('button', { name: 'Login' });
-        this.buttonLogout = page.getByRole('button', { name: 'Logout' });
+        this.buttonLogout = page.locator('.button.secondary.radius');
         this.flashMessage = page.locator('#flash');
     }
 
