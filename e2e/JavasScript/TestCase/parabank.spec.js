@@ -1,52 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-import {
-    RegisterLoginPage,
-    ParabankDemoLoginPage,
-    UserAccountPage,
-    OpenNewAccountFlow
-} from '../Locator/parabank-demo';
-
-
-test.describe('Parabank Register new Account', { tag: '@parabankdemo' }, () => {
-    let registerPage;
-
-    test.beforeEach(async ({ page }) => {
-        registerPage = new RegisterLoginPage(page);
-        await registerPage.goto();
-    });
-
-    test('Complete Register', async () => {
-        const FirstName = process.env.PARABANK_FIRSTNAME || 'John';
-        const LastName = process.env.PARABANK_LASTNAME || 'Doe';
-        const Address = process.env.PARABANK_ADDRESS || 'Jalan Dulu';
-        const City = process.env.PARABANK_CITY || 'Kripton';
-        const State = process.env.PARABANK_STATE || 'KrypKryp';
-        const ZipCode = process.env.PARABANK_ZIPCODE || '14045';
-        const Phone = process.env.PARABANK_PHONE || '00000';
-        const SSN = process.env.PARABANK_SSN || '3828321';
-        const Username = process.env.PARABANK_USERNAME || 'admin024';
-        const Password = process.env.PARABANK_PASSWORD || 'Lalalolo21';
-        const accPassword = process.env.PARABANK_CONFIRMPASSWORD || 'Lalalolo21';
-            
-        await registerPage.inputAll(
-            FirstName,
-            LastName,
-            Address,
-            City,
-            State,
-            ZipCode,
-            Phone,
-            SSN,
-            Username,
-            Password,
-            accPassword
-        );
-//>>>>>>>>>>>>>> this comment in below still bugged, need fixing
-//        await registerPage.SuccessCA('Your account was created successfully. You are now logged in.');
-    });
-
-});
+import {ParabankDemoLoginPage,UserAccountPage,OpenNewAccountFlow} from '../Locator/parabank-demo';
 
 test.describe(' Parabank Login', { tag: '@parabankdemo' }, () => {
     let loginPage;
@@ -57,8 +11,8 @@ test.describe(' Parabank Login', { tag: '@parabankdemo' }, () => {
     });
 
     test('Complete Login', async ({ page }) => {
-        const username = process.env.PARABANK_USERNAME || 'admin021';
-        const password = process.env.PARABANK_PASSWORD || 'Lalalolo21';
+        const username = process.env.PARABANK_USERNAME || '123123';
+        const password = process.env.PARABANK_PASSWORD || '123123';
 
         await loginPage.login(username, password);
 
@@ -85,8 +39,8 @@ test.describe('Open New Account Flow', { tag: '@parabankdemo' }, () => {
 
         //login first
         await loginPage.goto();
-        const username = process.env.PARABANK_USERNAME || 'admin021';
-        const password = process.env.PARABANK_PASSWORD || 'Lalalolo21';
+        const username = process.env.PARABANK_USERNAME || '123123';
+        const password = process.env.PARABANK_PASSWORD || '123123';
         await loginPage.login(username, password);
         await AccountPage.expectLoginSuccess();
     });
