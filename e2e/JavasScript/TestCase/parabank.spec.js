@@ -1,6 +1,10 @@
 import { test, expect } from '@playwright/test';
 
-import {ParabankDemoLoginPage,UserAccountPage,OpenNewAccountFlow} from '../Locator/parabank-demo';
+import {
+    ParabankDemoLoginPage, 
+    UserAccountPage, 
+    OpenNewAccountFlow
+} from '../Locator/parabank-demo';
 
 test.describe(' Parabank Login', { tag: '@parabankdemo' }, () => {
     let loginPage;
@@ -11,7 +15,7 @@ test.describe(' Parabank Login', { tag: '@parabankdemo' }, () => {
     });
 
     test('Complete Login', async ({ page }) => {
-        const username = process.env.PARABANK_USERNAME || '123123';
+        const username = process.env.PARABANK_USERNAME || 'admin023';
         const password = process.env.PARABANK_PASSWORD || '123123';
 
         await loginPage.login(username, password);
@@ -39,7 +43,7 @@ test.describe('Open New Account Flow', { tag: '@parabankdemo' }, () => {
 
         //login first
         await loginPage.goto();
-        const username = process.env.PARABANK_USERNAME || '123123';
+        const username = process.env.PARABANK_USERNAME || 'admin023';
         const password = process.env.PARABANK_PASSWORD || '123123';
         await loginPage.login(username, password);
         await AccountPage.expectLoginSuccess();
