@@ -13,7 +13,7 @@ export class GoToElementPageDemo {
     }
 
     async gotoElementPage() {
-        await this.page.goto(this.url, {timeout: 45000});
+        await this.page.goto(this.url);
         await this.elementButton.click();
     }
 }
@@ -88,7 +88,7 @@ export class CheckBoxPage {
         this.urlElementPage = 'https://demoqa.com/elements';
         this.checkboxButton = page.locator('li:has-text("Check Box")');
         this.urlCheckBox = 'https://demoqa.com/checkbox';
-        this.HomeLabel = page.getByLabel('Home');
+        this.HomeLabel = page.locator("//label[@for='tree-node-home']//span[@class='rct-checkbox']//*[name()='svg']")
         this.DesktopLabel = page.getByLabel('Desktop');
         this.NotesLabel = page.getByLabel('Notes');
         this.CommandsLabel = page.getByLabel('Commands');
