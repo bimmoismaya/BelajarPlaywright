@@ -4,7 +4,7 @@ import {
     ParabankDemoLoginPage, 
     UserAccountPage, 
     OpenNewAccountFlow
-} from '../Locator/parabank-demo';
+} from '../../Locator/Parabank/parabank-demo';
 
 test.describe(' Parabank Login', { tag: '@parabankdemo' }, () => {
     let loginPage;

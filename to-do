@@ -1,7 +1,7 @@
-*[@id="content"]/div/button
-html/body/div[2]/div/div/button
-bikin flow dimana bisa skip login
-bikin file locator untuk pemanggilan
+# *[@id="content"]/div/button
+# html/body/div[2]/div/div/button
+# bikin flow dimana bisa skip login
+# bikin file locator untuk pemanggilan
 belajar cara handle web load yang cukup lama
 belajar call api
 ssh-keygen -t ed25519 -C "ismaya.bimmo@gmail.com"
