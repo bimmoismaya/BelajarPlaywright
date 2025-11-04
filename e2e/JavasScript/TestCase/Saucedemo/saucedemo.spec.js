@@ -4,7 +4,7 @@ import {
     SauceDemoInventoryPage,
     SauceDemoCartPage,
     SauceDemoCheckoutPage,
-} from '../Locator/sauce-demo-';
+} from '../../Locator/Saucedemo/sauce-demo-';
 
 /**
  * SauceDemo Test Suite

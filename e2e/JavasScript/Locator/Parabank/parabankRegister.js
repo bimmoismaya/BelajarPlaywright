@@ -60,6 +60,10 @@ export class RegisterLoginPage {
         await this.password.fill(Password);
         await this.confirmPass.fill(accPassword);
 
+        
+    }
+
+    async hitButtonRegister(){
         await this.buttonRegister.click();
     }
 

@@ -2,7 +2,7 @@ import { test, expect } from "@playwright/test";
 
 import {
     RegisterLoginPage
-} from '../Locator/parabankRegister';
+} from '../../Locator/Parabank/parabankRegister';
 
 test.describe('Parabank Register new Account', { tag: '@register' }, () => {
     let registerPage;
@@ -21,7 +21,7 @@ test.describe('Parabank Register new Account', { tag: '@register' }, () => {
         const ZipCode = process.env.PARABANK_ZIPCODE || '14045';
         const Phone = process.env.PARABANK_PHONE || '00000';
         const SSN = process.env.PARABANK_SSN || '3828321';
-        const Username = process.env.PARABANK_USERNAME || 'admin023';
+        const Username = process.env.PARABANK_USERNAME || 'admin123123';
         const Password = process.env.PARABANK_PASSWORD || '123123';
         const accPassword = process.env.PARABANK_CONFIRMPASSWORD || '123123';
 
@@ -39,7 +39,9 @@ test.describe('Parabank Register new Account', { tag: '@register' }, () => {
             accPassword
         );
 
-        await page.waitForTimeout(10000);
+        await registerPage.hitButtonRegister();
+
+        //await page.waitForTimeout(10000);
         //>>>>>>>>>>>>>> this comment in below still bugged, need fixing
     });
 
