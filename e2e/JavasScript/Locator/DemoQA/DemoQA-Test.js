@@ -92,8 +92,7 @@ export class CheckBoxPage {
         this.urlElementPage = 'https://demoqa.com/elements';
         this.checkboxButton = page.locator('li:has-text("Check Box")');
         this.urlCheckBox = 'https://demoqa.com/checkbox';
-        this.HomeLabel = page.locator("//label[@for='tree-node-home']//span[@class='rct-checkbox']//*[name()='svg']");
-        this.DesktopLabel = page.getByLabel('Desktop');
+        this.HomeLabel = page.getByLabel('Home', { exact: true });
         this.NotesLabel = page.getByLabel('Notes');
         this.CommandsLabel = page.getByLabel('Commands');
         this.DocumentsLabel = page.getByLabel('Documents');
