@@ -22,7 +22,7 @@ export class GoToElementPageDemo {
  * 
  */
 
-export class TextBoxTextDemo {
+export class TextBoxDemo {
     constructor(page) {
         this.page = page;
         this.buttonTextBox = page.locator('li:has-text("Text Box")');
