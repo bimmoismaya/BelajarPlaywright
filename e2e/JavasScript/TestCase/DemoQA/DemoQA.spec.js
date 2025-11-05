@@ -13,11 +13,11 @@ test.describe('DemoQA go to Text Box', { tag: '@demoQA' }, () => {
         webPage = new GoToElementPageDemo(page);
         TexBoxPage = new TextBoxDemo(page);
         await webPage.gotoElementPage();
+        await webPage.expectSuccessGoToElementsPage();
 
     });
 
     test('input all text box lalu submit', async () => {
-        await TexBoxPage.expectSuccessGoToElementsPage();
         await TexBoxPage.gotoTextBoxPage();
         await TexBoxPage.expectSuccessGoToTextBoxPage();
         await TexBoxPage.inputDataInfo('John Doe', 'admin@admin.com', 'Earth', 'Mars');
@@ -33,11 +33,10 @@ test.describe('DemoQA go to CheckboxPage', { tag: '@demoQA' }, () => {
         webPage = new GoToElementPageDemo(page);
         checkBoxPage = new CheckBoxPage(page);
         await webPage.gotoElementPage();
+        await webPage.expectSuccessGoToElementsPage();
     });
 
     test('Testing Collapse Button', async () => {
-
-        await checkBoxPage.expectSuccessGoToElementsPage();
         await checkBoxPage.gotoCheckBoxPage();
         await checkBoxPage.expectSuccessGoToCheckBoxPage();
         await checkBoxPage.hitButtonCollapse();

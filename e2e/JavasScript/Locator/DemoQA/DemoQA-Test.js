@@ -10,11 +10,18 @@ export class GoToElementPageDemo {
         this.page = page;
         this.url = 'https://demoqa.com/';
         this.elementButton = page.getByText('Elements', { exact: true });
+        this.urlElementPage = 'https://demoqa.com/elements';
+
     }
 
     async gotoElementPage() {
         await this.page.goto(this.url);
+        await this.elementButton.waitFor({ state: 'visible', timeout: 10000 });
         await this.elementButton.click();
+    }
+
+    async expectSuccessGoToElementsPage() {
+        await expect(this.page).toHaveURL(this.urlElementPage);
     }
 }
 
@@ -26,7 +33,6 @@ export class TextBoxDemo {
     constructor(page) {
         this.page = page;
         this.buttonTextBox = page.locator('li:has-text("Text Box")');
-        this.urlElementPage = 'https://demoqa.com/elements';
         this.urlTextBox = 'https://demoqa.com/text-box';
         this.UserName = page.getByRole('textbox', { name: 'Full Name' })
         this.UserEmail = page.locator('#userEmail');
@@ -44,9 +50,7 @@ export class TextBoxDemo {
         await this.buttonTextBox.click();
     }
 
-    async expectSuccessGoToElementsPage() {
-        await expect(this.page).toHaveURL(this.urlElementPage);
-    }
+    
 
     async expectSuccessGoToTextBoxPage() {
         await expect(this.page).toHaveURL(this.urlTextBox);
@@ -88,7 +92,7 @@ export class CheckBoxPage {
         this.urlElementPage = 'https://demoqa.com/elements';
         this.checkboxButton = page.locator('li:has-text("Check Box")');
         this.urlCheckBox = 'https://demoqa.com/checkbox';
-        this.HomeLabel = page.locator("//label[@for='tree-node-home']//span[@class='rct-checkbox']//*[name()='svg']")
+        this.HomeLabel = page.locator("//label[@for='tree-node-home']//span[@class='rct-checkbox']//*[name()='svg']");
         this.DesktopLabel = page.getByLabel('Desktop');
         this.NotesLabel = page.getByLabel('Notes');
         this.CommandsLabel = page.getByLabel('Commands');
@@ -129,11 +133,12 @@ export class CheckBoxPage {
         await expect(this.DesktopLabel).not.toBeVisible();
     }
 
-    async clickHomeLabel(){
+    async clickHomeLabel() {
+        await this.HomeLabel.waitFor({ state: 'visible', timeout: 10000 });
         await this.HomeLabel.click();
     }
 
-    async expectHomeLabelChecked(){
+    async expectHomeLabelChecked() {
         await expect(this.HomeLabel).toBeChecked();
     }
 
