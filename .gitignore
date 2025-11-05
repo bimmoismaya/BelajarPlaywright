@@ -1,10 +1,12 @@
 
 # Playwright
 node_modules/
+/TS/
 /test-results/
 /playwright-report/
 /blob-report/
 /playwright/.cache/
 /playwright/.auth/
+
 # catatan, bisa mendapatkan locator lebih mudah dengan menggunakan codegen, lalu masukan webnya,
 # contoh npx playwright codegen www.test.com
