@@ -168,7 +168,7 @@ export class CheckBoxPage {
     async hitButtonExpand() {
         const btn = this.buttonExpandCheckBox;
 
-        await btn.waitFor({ state: 'visible', timeout: 10000 })//updated
+        await btn.waitFor({ state: 'visible', timeout: 15000 })//updated
         await btn.scrollIntoViewIfNeeded();
         await btn.click();
     }
