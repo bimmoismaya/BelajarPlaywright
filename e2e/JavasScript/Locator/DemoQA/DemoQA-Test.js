@@ -15,7 +15,7 @@ export class GoToElementPageDemo {
     }
 
     async gotoElementPage() {
-        await this.page.goto(this.url, {timeout: 60000});//updated
+        await this.page.goto(this.url, { timeout: 60000 });//updated
         await this.elementButton.waitFor({ state: 'visible', timeout: 10000 });
         await this.elementButton.click();
     }
@@ -50,7 +50,7 @@ export class TextBoxDemo {
         await this.buttonTextBox.click();
     }
 
-    
+
 
     async expectSuccessGoToTextBoxPage() {
         await expect(this.page).toHaveURL(this.urlTextBox);
@@ -109,9 +109,9 @@ export class CheckBoxPage {
         this.DownloadsLabel = page.getByLabel('Downloads');
         this.WordFileLabel = page.getByLabel('Word File.doc');
         this.ExcelFileLabel = page.getByLabel('Excel File.doc');
-        this.buttonExpandCheckBox = page.getByRole('button', { name: 'Expand all' });
-        this.buttonCollapseCheckBox = page.getByRole('button', { name: 'Collapse all' });
-
+        this.buttonExpandCheckBox = page.locator("//button[@title='Expand all']");
+        this.buttonCollapseCheckBox = page.locator("//button[@title='Collapse all']");
+    }
     async gotoCheckBoxPage() {
         await this.checkboxButton.click();
     }
@@ -141,12 +141,12 @@ export class CheckBoxPage {
         await expect(this.HomeLabel).toBeChecked();
     }
 
-    async hitButtonExpand(){
-        await this.buttonExpandCheckBox.waitFor({state: 'visible', timeout:10000})//updated
+    async hitButtonExpand() {
+        await this.buttonExpandCheckBox.waitFor({ state: 'visible', timeout: 10000 })//updated
         await this.buttonExpandCheckBox.click();
     }
 
-    async expectExpand(){
+    async expectExpand() {
         await expect(this.DesktopLabel).toBeVisible();
         await expect(this.NotesLabel).toBeVisible();
         await expect(this.DocumentsLabel).toBeVisible();
