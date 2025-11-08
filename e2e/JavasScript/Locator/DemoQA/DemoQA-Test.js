@@ -15,7 +15,7 @@ export class GoToElementPageDemo {
     }
 
     async gotoElementPage() {
-        await this.page.goto(this.url);
+        await this.page.goto(this.url, {timeout: 60000});//updated
         await this.elementButton.waitFor({ state: 'visible', timeout: 10000 });
         await this.elementButton.click();
     }
@@ -143,6 +143,7 @@ export class CheckBoxPage {
     }
 
     async hitButtonExpand(){
+        await this.buttonExpandCheckBox.waitFor({state: 'visible', timeout:10000})//updated
         await this.buttonExpandCheckBox.click();
     }
 
