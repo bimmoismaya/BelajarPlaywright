@@ -93,6 +93,7 @@ export class CheckBoxPage {
         this.checkboxButton = page.locator('li:has-text("Check Box")');
         this.urlCheckBox = 'https://demoqa.com/checkbox';
         this.HomeLabel = page.getByLabel('Home', { exact: true });
+        this.DesktopLabel = page.getByLabel('Desktop');
         this.NotesLabel = page.getByLabel('Notes');
         this.CommandsLabel = page.getByLabel('Commands');
         this.DocumentsLabel = page.getByLabel('Documents');
@@ -139,6 +140,22 @@ export class CheckBoxPage {
 
     async expectHomeLabelChecked() {
         await expect(this.HomeLabel).toBeChecked();
+    }
+
+    async hitButtonExpand(){
+        await this.buttonExpandCheckBox.click();
+    }
+
+    async expectExpand(){
+        await expect(this.DesktopLabel).toBeVisible();
+        await expect(this.NotesLabel).toBeVisible();
+        await expect(this.DocumentsLabel).toBeVisible();
+        await expect(this.WorkspaceLabel).toBeVisible();
+        await expect(this.ReactLabel).toBeVisible();
+        await expect(this.OfficeLabel).toBeVisible();
+        await expect(this.GeneralLabel).toBeVisible();
+        await expect(this.DownloadsLabel).toBeVisible();
+        await expect(this.WordFileLabel).toBeVisible();
     }
 
 }
