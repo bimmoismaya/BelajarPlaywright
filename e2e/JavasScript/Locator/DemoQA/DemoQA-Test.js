@@ -116,23 +116,40 @@ export class CheckBoxPage {
         this.urlElementPage = 'https://demoqa.com/elements';
         this.checkboxButton = page.locator('li:has-text("Check Box")');
         this.urlCheckBox = 'https://demoqa.com/checkbox';
-        this.HomeLabel = page.getByLabel('Home', { exact: true });
-        this.DesktopLabel = page.getByLabel('Desktop');
-        this.NotesLabel = page.getByLabel('Notes');
-        this.CommandsLabel = page.getByLabel('Commands');
-        this.DocumentsLabel = page.getByLabel('Documents');
-        this.WorkspaceLabel = page.getByLabel('WorkSpace');
-        this.ReactLabel = page.getByLabel('React');
-        this.AngularLabel = page.getByLabel('Angular');
-        this.VeuLabel = page.getByLabel('Veu');
-        this.OfficeLabel = page.getByLabel('Office');
-        this.PublicLabel = page.getByLabel('Public');
-        this.PrivateLabel = page.getByLabel('Private');
-        this.ClassifiedLabel = page.getByLabel('Classified');
-        this.GeneralLabel = page.getByLabel('General');
-        this.DownloadsLabel = page.getByLabel('Downloads');
-        this.WordFileLabel = page.getByLabel('Word File.doc');
-        this.ExcelFileLabel = page.getByLabel('Excel File.doc');
+        this.HomeLabel = page.locator('.rct-title:has-text("Home")');// << gunakan model ini untuk toBeVisible "katanya"
+        this.LabelHome = page.getByLabel('Home', { exact: true });
+        this.DesktopLabel = page.locator('.rct-title:has-text("Desktop")');
+        this.LabelDesktop = page.getByLabel('Desktop');
+        this.NotesLabel = page.locator('.rct-title:has-text("Notes")');
+        this.LabelNotes = page.getByLabel('Notes');
+        this.CommandsLabel = page.locator('.rct-title:has-text("Commands")');
+        this.LabelCommands = page.getByLabel('Commands');
+        this.DocumentsLabel = page.locator('.rct-title:has-text("Documents")');
+        this.LabelDocuments = page.getByLabel('Documents');
+        this.WorkspaceLabel = page.locator('.rct-title:has-text("WorkSpace")');
+        this.LabelWorkspace = page.getByLabel('WorkSpace');
+        this.ReactLabel = page.locator('.rct-title:has-text("React")');
+        this.LabelReact = page.getByLabel('React');
+        this.AngularLabel = page.locator('.rct-title:has-text("Angular")');
+        this.LabelAngular = page.getByLabel('Angular');
+        this.VeuLabel = page.locator('.rct-title:has-text("Veu")');
+        this.LabelVeu = page.getByLabel('Veu');
+        this.OfficeLabel = page.locator('.rct-title:has-text("Office")');
+        this.LabelOffice = page.getByLabel('Office');
+        this.PublicLabel = page.locator('.rct-title:has-text("Public")');
+        this.LabelPublic = page.getByLabel('Public');
+        this.PrivateLabel = page.locator('.rct-title:has-text("Private")');
+        this.LabelPrivate = page.getByLabel('Private');
+        this.ClassifiedLabel = page.locator('.rct-title:has-text("Classified")');
+        this.LabelClassified = page.getByLabel('Classified');
+        this.GeneralLabel = page.locator('.rct-title:has-text("General")');
+        this.LabelGeneral = page.getByLabel('General');
+        this.DownloadsLabel = page.locator('.rct-title:has-text("Downloads")');
+        this.LabelDownloads = page.getByLabel('Downloads');
+        this.WordFileLabel = page.locator('.rct-title:has-text("Word File.doc")');
+        this.LabelWordFile = page.getByLabel('Word File.doc');
+        this.ExcelFileLabel = page.locator('.rct-title:has-text("Excel File.doc")');
+        this.LabelExcelFile = page.getByLabel('Excel File.doc');
         this.buttonExpandCheckBox = page.locator("//button[@title='Expand all']");
         this.buttonCollapseCheckBox = page.locator("//button[@title='Collapse all']");
     }
@@ -174,6 +191,7 @@ export class CheckBoxPage {
     }
 
     async expectExpand() {
+        await expect(this.HomeLabel).toBeVisible();
         await expect(this.DesktopLabel).toBeVisible();
         await expect(this.NotesLabel).toBeVisible();
         await expect(this.DocumentsLabel).toBeVisible();
@@ -183,6 +201,26 @@ export class CheckBoxPage {
         await expect(this.GeneralLabel).toBeVisible();
         await expect(this.DownloadsLabel).toBeVisible();
         await expect(this.WordFileLabel).toBeVisible();
+    }
+
+    async expectAllBoxChecked (){
+        await expect(this.HomeLabel).toBeChecked();
+        await expect(this.DesktopLabel).toBeChecked();
+        await expect(this.NotesLabel).toBeChecked();
+        await expect(this.CommandsLabel).toBeChecked();
+        await expect(this.DocumentsLabel).toBeChecked();
+        await expect(this.WorkspaceLabel).toBeChecked();
+        await expect(this.ReactLabel).toBeChecked();
+        await expect(this.AngularLabel).toBeChecked();
+        await expect(this.VeuLabel).toBeChecked();
+        await expect(this.OfficeLabel).toBeChecked();
+        await expect(this.PublicLabel).toBeChecked();
+        await expect(this.PrivateLabel).toBeChecked();
+        await expect(this.ClassifiedLabel).toBeChecked();
+        await expect(this.GeneralLabel).toBeChecked();
+        await expect(this.DownloadsLabel).toBeChecked();
+        await expect(this.WordFileLabel).toBeChecked();
+        await expect(this.ExcelFileLabel).toBeChecked();
     }
 
 }

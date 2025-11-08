@@ -36,23 +36,34 @@ test.describe('DemoQA go to CheckboxPage', { tag: '@demoQA' }, () => {
         await webPage.expectSuccessGoToElementsPage();
     });
 
-    test('Testing Expand isi checkbox', async() => {
+    test('Testing Expand isi checkbox', async () => {
+        await checkBoxPage.gotoCheckBoxPage();
+        await checkBoxPage.expectSuccessGoToCheckBoxPage();
         await checkBoxPage.hitButtonExpand();
         await checkBoxPage.expectExpand();
     });
 
-    // test('Testing Collapse Button', async () => {
-    //     await checkBoxPage.gotoCheckBoxPage();
-    //     await checkBoxPage.expectSuccessGoToCheckBoxPage();
-    //     await checkBoxPage.hitButtonCollapse();
-    //     await checkBoxPage.CollapseAllView();
-    //     await checkBoxPage.CollapseNotView();
-    // });
+    test('Testing Collapse Button', async () => {
+        await checkBoxPage.gotoCheckBoxPage();
+        await checkBoxPage.hitButtonExpand();
+        await checkBoxPage.hitButtonCollapse();
+        await checkBoxPage.CollapseAllView();
+        await checkBoxPage.CollapseNotView();
+    });
 
-    // test('Home Label Checked', async () => {
-    //     await checkBoxPage.clickHomeLabel();
-    //     await checkBoxPage.expectHomeLabelChecked();
-    // })
+    test('Home Label Checked', async () => {
+        await checkBoxPage.gotoCheckBoxPage();
+        await checkBoxPage.clickHomeLabel();
+        await checkBoxPage.expectHomeLabelChecked();
+    });
+
+    test('All checkbox will be checked by clicked home box', async () => {
+        await checkBoxPage.gotoCheckBoxPage();
+        await checkBoxPage.hitButtonExpand();
+        await checkBoxPage.expectExpand();
+        await checkBoxPage.clickHomeLabel();
+        await checkBoxPage.expectAllBoxChecked();
+    })
 
 
 });
