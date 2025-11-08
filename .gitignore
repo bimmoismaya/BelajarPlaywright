@@ -1,7 +1,6 @@
 
 # Playwright
 node_modules/
-/e2e/TS/
 /test-results/
 /playwright-report/
 /blob-report/

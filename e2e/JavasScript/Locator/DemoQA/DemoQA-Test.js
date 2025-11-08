@@ -10,11 +10,30 @@ export class GoToElementPageDemo {
         this.page = page;
         this.url = 'https://demoqa.com/';
         this.elementButton = page.getByText('Elements', { exact: true });
+        this.urlElementPage = 'https://demoqa.com/elements';
+
     }
 
     async gotoElementPage() {
-        await this.page.goto(this.url);
-        await this.elementButton.click();
+        const maxAttempts = 2;
+        let attempt = 0;
+        while (attempt < maxAttempts) {
+            try {
+                await this.page.goto(this.url, { timeout: 60000, waitUntil: 'domcontentloaded' });//updated
+                await this.elementButton.waitFor({ state: 'visible', timeout: 10000 });
+                await this.elementButton.click();
+                return;
+            } catch(err){
+                attempt++;
+                if (attempt >= maxAttempts) throw err;
+                await this.page.waitForTimeout(1000 * attempt);
+            }
+        }
+
+    }
+
+    async expectSuccessGoToElementsPage() {
+        await expect(this.page).toHaveURL(this.urlElementPage);
     }
 }
 
@@ -22,11 +41,10 @@ export class GoToElementPageDemo {
  * 
  */
 
-export class TextBoxTextDemo {
+export class TextBoxDemo {
     constructor(page) {
         this.page = page;
         this.buttonTextBox = page.locator('li:has-text("Text Box")');
-        this.urlElementPage = 'https://demoqa.com/elements';
         this.urlTextBox = 'https://demoqa.com/text-box';
         this.UserName = page.getByRole('textbox', { name: 'Full Name' })
         this.UserEmail = page.locator('#userEmail');
@@ -42,11 +60,11 @@ export class TextBoxTextDemo {
 
     async gotoTextBoxPage() {
         await this.buttonTextBox.click();
+        await this.page.waitForURL(this.urlTextBox, {timeout: 15000 });
+        await this.logoTextBox.waitFor({ state: 'visible', timeout:15000});
     }
 
-    async expectSuccessGoToElementsPage() {
-        await expect(this.page).toHaveURL(this.urlElementPage);
-    }
+
 
     async expectSuccessGoToTextBoxPage() {
         await expect(this.page).toHaveURL(this.urlTextBox);
@@ -54,14 +72,24 @@ export class TextBoxTextDemo {
 
 
     async inputDataInfo(username, email, current, permanent) {
+        await this.UserName.waitFor({ state: 'visible', timeout: 10000 });
         await this.UserName.fill(username);
+
+        await this.UserEmail.waitFor({ state: 'visible', timeout: 10000 });
         await this.UserEmail.fill(email);
+
+        await this.currentAddress.waitFor({ state: 'visible', timeout: 10000 });
         await this.currentAddress.fill(current);
+
+        await this.permanentAddress.waitFor({ state: 'visible', timeout: 10000 });
         await this.permanentAddress.fill(permanent);
     }
 
     async hitButtonSubmit() {
+        await this.submitButtoon.waitFor({ state:'visible', timeout:15000});
+        await this.submitButtoon.scrollIntoViewIfNeeded();
         await this.submitButtoon.click();
+
     }
     /**
      * penggunaan toContainText dibawah ini adalah untuk mengambil semua data yang ada dilocator
@@ -88,27 +116,43 @@ export class CheckBoxPage {
         this.urlElementPage = 'https://demoqa.com/elements';
         this.checkboxButton = page.locator('li:has-text("Check Box")');
         this.urlCheckBox = 'https://demoqa.com/checkbox';
-        this.HomeLabel = page.locator("//label[@for='tree-node-home']//span[@class='rct-checkbox']//*[name()='svg']")
-        this.DesktopLabel = page.getByLabel('Desktop');
-        this.NotesLabel = page.getByLabel('Notes');
-        this.CommandsLabel = page.getByLabel('Commands');
-        this.DocumentsLabel = page.getByLabel('Documents');
-        this.WorkspaceLabel = page.getByLabel('WorkSpace');
-        this.ReactLabel = page.getByLabel('React');
-        this.AngularLabel = page.getByLabel('React');
-        this.VeuLabel = page.getByLabel('React');
-        this.OfficeLabel = page.getByLabel('React');
-        this.PublicLabel = page.getByLabel('Public');
-        this.PrivateLabel = page.getByLabel('Private');
-        this.ClassifiedLabel = page.getByLabel('Classified');
-        this.GeneralLabel = page.getByLabel('General');
-        this.DownloadsLabel = page.getByLabel('Downloads');
-        this.WordFileLabel = page.getByLabel('Word File.doc');
-        this.ExcelFileLabel = page.getByLabel('Excel File.doc');
-        this.buttonExpandCheckBox = page.locator("//button[@title='Expand all']//*[name()='svg']//*[name()='path' and contains(@d,'M19 3H5c-1')]");
-        this.buttonCollapseCheckBox = page.locator("//button[@title='Collapse all']//*[name()='svg']//*[name()='path' and contains(@d,'M19 3H5c-1')]");
+        this.HomeLabel = page.locator('.rct-title:has-text("Home")');// << gunakan model ini untuk toBeVisible "katanya"
+        this.LabelHome = page.getByLabel('Home', { exact: true });
+        this.DesktopLabel = page.locator('.rct-title:has-text("Desktop")');
+        this.LabelDesktop = page.getByLabel('Desktop');
+        this.NotesLabel = page.locator('.rct-title:has-text("Notes")');
+        this.LabelNotes = page.getByLabel('Notes');
+        this.CommandsLabel = page.locator('.rct-title:has-text("Commands")');
+        this.LabelCommands = page.getByLabel('Commands');
+        this.DocumentsLabel = page.locator('.rct-title:has-text("Documents")');
+        this.LabelDocuments = page.getByLabel('Documents');
+        this.WorkspaceLabel = page.locator('.rct-title:has-text("WorkSpace")');
+        this.LabelWorkspace = page.getByLabel('WorkSpace');
+        this.ReactLabel = page.locator('.rct-title:has-text("React")');
+        this.LabelReact = page.getByLabel('React');
+        this.AngularLabel = page.locator('.rct-title:has-text("Angular")');
+        this.LabelAngular = page.getByLabel('Angular');
+        this.VeuLabel = page.locator('.rct-title:has-text("Veu")');
+        this.LabelVeu = page.getByLabel('Veu');
+        this.OfficeLabel = page.locator('.rct-title:has-text("Office")');
+        this.LabelOffice = page.getByLabel('Office');
+        this.PublicLabel = page.locator('.rct-title:has-text("Public")');
+        this.LabelPublic = page.getByLabel('Public');
+        this.PrivateLabel = page.locator('.rct-title:has-text("Private")');
+        this.LabelPrivate = page.getByLabel('Private');
+        this.ClassifiedLabel = page.locator('.rct-title:has-text("Classified")');
+        this.LabelClassified = page.getByLabel('Classified');
+        this.GeneralLabel = page.locator('.rct-title:has-text("General")');
+        this.LabelGeneral = page.getByLabel('General');
+        this.DownloadsLabel = page.locator('.rct-title:has-text("Downloads")');
+        this.LabelDownloads = page.getByLabel('Downloads');
+        this.WordFileLabel = page.locator('.rct-title:has-text("Word File.doc")');
+        this.LabelWordFile = page.getByLabel('Word File.doc');
+        this.ExcelFileLabel = page.locator('.rct-title:has-text("Excel File.doc")');
+        this.LabelExcelFile = page.getByLabel('Excel File.doc');
+        this.buttonExpandCheckBox = page.locator("//button[@title='Expand all']");
+        this.buttonCollapseCheckBox = page.locator("//button[@title='Collapse all']");
     }
-
     async gotoCheckBoxPage() {
         await this.checkboxButton.click();
     }
@@ -129,12 +173,54 @@ export class CheckBoxPage {
         await expect(this.DesktopLabel).not.toBeVisible();
     }
 
-    async clickHomeLabel(){
+    async clickHomeLabel() {
+        await this.HomeLabel.waitFor({ state: 'visible', timeout: 10000 });
         await this.HomeLabel.click();
     }
 
-    async expectHomeLabelChecked(){
+    async expectHomeLabelChecked() {
         await expect(this.HomeLabel).toBeChecked();
+    }
+
+    async hitButtonExpand() {
+        const btn = this.buttonExpandCheckBox;
+
+        await btn.waitFor({ state: 'visible', timeout: 15000 })//updated
+        await btn.scrollIntoViewIfNeeded();
+        await btn.click();
+    }
+
+    async expectExpand() {
+        await expect(this.HomeLabel).toBeVisible();
+        await expect(this.DesktopLabel).toBeVisible();
+        await expect(this.NotesLabel).toBeVisible();
+        await expect(this.DocumentsLabel).toBeVisible();
+        await expect(this.WorkspaceLabel).toBeVisible();
+        await expect(this.ReactLabel).toBeVisible();
+        await expect(this.OfficeLabel).toBeVisible();
+        await expect(this.GeneralLabel).toBeVisible();
+        await expect(this.DownloadsLabel).toBeVisible();
+        await expect(this.WordFileLabel).toBeVisible();
+    }
+
+    async expectAllBoxChecked (){
+        await expect(this.HomeLabel).toBeChecked();
+        await expect(this.DesktopLabel).toBeChecked();
+        await expect(this.NotesLabel).toBeChecked();
+        await expect(this.CommandsLabel).toBeChecked();
+        await expect(this.DocumentsLabel).toBeChecked();
+        await expect(this.WorkspaceLabel).toBeChecked();
+        await expect(this.ReactLabel).toBeChecked();
+        await expect(this.AngularLabel).toBeChecked();
+        await expect(this.VeuLabel).toBeChecked();
+        await expect(this.OfficeLabel).toBeChecked();
+        await expect(this.PublicLabel).toBeChecked();
+        await expect(this.PrivateLabel).toBeChecked();
+        await expect(this.ClassifiedLabel).toBeChecked();
+        await expect(this.GeneralLabel).toBeChecked();
+        await expect(this.DownloadsLabel).toBeChecked();
+        await expect(this.WordFileLabel).toBeChecked();
+        await expect(this.ExcelFileLabel).toBeChecked();
     }
 
 }

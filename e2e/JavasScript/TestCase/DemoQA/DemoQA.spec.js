@@ -2,27 +2,27 @@ import { test, expect } from '@playwright/test';
 
 import {
     GoToElementPageDemo,
-    TextBoxElementDemo,
+    TextBoxDemo,
     CheckBoxPage
 } from '../../Locator/DemoQA/DemoQA-Test'
 
 test.describe('DemoQA go to Text Box', { tag: '@demoQA' }, () => {
     let webPage;
-    let elementPage;
+    let TexBoxPage;
     test.beforeEach(async ({ page }) => {
         webPage = new GoToElementPageDemo(page);
-        elementPage = new TextBoxElementDemo(page);
+        TexBoxPage = new TextBoxDemo(page);
         await webPage.gotoElementPage();
+        await webPage.expectSuccessGoToElementsPage();
 
     });
 
     test('input all text box lalu submit', async () => {
-        await elementPage.expectSuccessGoToElementsPage();
-        await elementPage.gotoTextBoxPage();
-        await elementPage.expectSuccessGoToTextBoxPage();
-        await elementPage.inputDataInfo('John Doe', 'admin@admin.com', 'Earth', 'Mars');
-        await elementPage.hitButtonSubmit();
-        await elementPage.expectedResultSubmit('John Doe', 'admin@admin.com', 'Earth', 'Mars');
+        await TexBoxPage.gotoTextBoxPage();
+        await TexBoxPage.expectSuccessGoToTextBoxPage();
+        await TexBoxPage.inputDataInfo('John Doe', 'admin@admin.com', 'Earth', 'Mars');
+        await TexBoxPage.hitButtonSubmit();
+        await TexBoxPage.expectedResultSubmit('John Doe', 'admin@admin.com', 'Earth', 'Mars');
     });
 });
 
@@ -33,21 +33,36 @@ test.describe('DemoQA go to CheckboxPage', { tag: '@demoQA' }, () => {
         webPage = new GoToElementPageDemo(page);
         checkBoxPage = new CheckBoxPage(page);
         await webPage.gotoElementPage();
+        await webPage.expectSuccessGoToElementsPage();
+    });
+
+    test('Testing Expand isi checkbox', async () => {
+        await checkBoxPage.gotoCheckBoxPage();
+        await checkBoxPage.expectSuccessGoToCheckBoxPage();
+        await checkBoxPage.hitButtonExpand();
+        await checkBoxPage.expectExpand();
     });
 
     test('Testing Collapse Button', async () => {
-
-        await checkBoxPage.expectSuccessGoToElementsPage();
         await checkBoxPage.gotoCheckBoxPage();
-        await checkBoxPage.expectSuccessGoToCheckBoxPage();
+        await checkBoxPage.hitButtonExpand();
         await checkBoxPage.hitButtonCollapse();
         await checkBoxPage.CollapseAllView();
         await checkBoxPage.CollapseNotView();
     });
 
     test('Home Label Checked', async () => {
+        await checkBoxPage.gotoCheckBoxPage();
         await checkBoxPage.clickHomeLabel();
         await checkBoxPage.expectHomeLabelChecked();
+    });
+
+    test('All checkbox will be checked by clicked home box', async () => {
+        await checkBoxPage.gotoCheckBoxPage();
+        await checkBoxPage.hitButtonExpand();
+        await checkBoxPage.expectExpand();
+        await checkBoxPage.clickHomeLabel();
+        await checkBoxPage.expectAllBoxChecked();
     })
 
 
