@@ -60,6 +60,8 @@ export class TextBoxDemo {
 
     async gotoTextBoxPage() {
         await this.buttonTextBox.click();
+        await this.page.waitForURL(this.urlTextBox, {timeout: 15000 });
+        await this.logoTextBox.waitFor({ state: 'visible', timeout:15000});
     }
 
 
@@ -70,14 +72,24 @@ export class TextBoxDemo {
 
 
     async inputDataInfo(username, email, current, permanent) {
+        await this.UserName.waitFor({ state: 'visible', timeout: 10000 });
         await this.UserName.fill(username);
+
+        await this.UserEmail.waitFor({ state: 'visible', timeout: 10000 });
         await this.UserEmail.fill(email);
+
+        await this.currentAddress.waitFor({ state: 'visible', timeout: 10000 });
         await this.currentAddress.fill(current);
+
+        await this.permanentAddress.waitFor({ state: 'visible', timeout: 10000 });
         await this.permanentAddress.fill(permanent);
     }
 
     async hitButtonSubmit() {
+        await this.submitButtoon.waitFor({ state:'visible', timeout:15000});
+        await this.submitButtoon.scrollIntoViewIfNeeded();
         await this.submitButtoon.click();
+
     }
     /**
      * penggunaan toContainText dibawah ini adalah untuk mengambil semua data yang ada dilocator
@@ -154,8 +166,11 @@ export class CheckBoxPage {
     }
 
     async hitButtonExpand() {
-        await this.buttonExpandCheckBox.waitFor({ state: 'visible', timeout: 10000 })//updated
-        await this.buttonExpandCheckBox.click();
+        const btn = this.buttonExpandCheckBox;
+
+        await btn.waitFor({ state: 'visible', timeout: 10000 })//updated
+        await btn.scrollIntoViewIfNeeded();
+        await btn.click();
     }
 
     async expectExpand() {
