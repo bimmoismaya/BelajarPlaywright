@@ -99,9 +99,9 @@ export class CheckBoxPage {
         this.DocumentsLabel = page.getByLabel('Documents');
         this.WorkspaceLabel = page.getByLabel('WorkSpace');
         this.ReactLabel = page.getByLabel('React');
-        this.AngularLabel = page.getByLabel('React');
-        this.VeuLabel = page.getByLabel('React');
-        this.OfficeLabel = page.getByLabel('React');
+        this.AngularLabel = page.getByLabel('Angular');
+        this.VeuLabel = page.getByLabel('Veu');
+        this.OfficeLabel = page.getByLabel('Office');
         this.PublicLabel = page.getByLabel('Public');
         this.PrivateLabel = page.getByLabel('Private');
         this.ClassifiedLabel = page.getByLabel('Classified');
@@ -109,9 +109,8 @@ export class CheckBoxPage {
         this.DownloadsLabel = page.getByLabel('Downloads');
         this.WordFileLabel = page.getByLabel('Word File.doc');
         this.ExcelFileLabel = page.getByLabel('Excel File.doc');
-        this.buttonExpandCheckBox = page.locator("//button[@title='Expand all']//*[name()='svg']//*[name()='path' and contains(@d,'M19 3H5c-1')]");
-        this.buttonCollapseCheckBox = page.locator("//button[@title='Collapse all']//*[name()='svg']//*[name()='path' and contains(@d,'M19 3H5c-1')]");
-    }
+        this.buttonExpandCheckBox = page.getByRole('button', { name: 'Expand all' });
+        this.buttonCollapseCheckBox = page.getByRole('button', { name: 'Collapse all' });
 
     async gotoCheckBoxPage() {
         await this.checkboxButton.click();
