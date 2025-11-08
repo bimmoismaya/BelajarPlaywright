@@ -32,7 +32,7 @@ export default defineConfig({
     trace: 'on-first-retry',
 
     /* Timeouts for various actions */
-    navigationTimeout: 30000,
+    navigationTimeout: 60000,
     actionTimeout: 10000,
   },
 
