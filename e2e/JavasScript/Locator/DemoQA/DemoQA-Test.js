@@ -224,3 +224,45 @@ export class CheckBoxPage {
     }
 
 }
+
+export class RadioButtonPage{
+    constructor(page){
+        this.page = page;
+        this.RadioButtonSideButton = page.locator('li:has-text("Radio Button")');
+        this.urlRadioButton = 'https://demoqa.com/radio-button';
+        this.headerRadioButton = page.locator('li:has-text("Check Box")');
+        this.TestRadioButton = page.getByText('Do you like the site?');
+        this.yesRadioButton = page.locator('label:has-text("Yes")');
+        this.impressiveRadioButton  = page.locator('label:has-text("Impressive")');
+        this.noRadioButton = page.locator('label:has-text("No")');
+        this.yesLabel = page.locator('label:has-text("Yes")');
+        this.impressiveLabel  = page.locator('label:has-text("Impressive")');
+        this.feedbackRadioButton = page.locator('p.mt-3');
+    }
+
+    async clickRadioButton(){
+        await this.RadioButtonSideButton.click();
+    }
+
+    async expectRadioButtonPage(){
+        await expect(this.page).toHaveURL(this.urlRadioButton);
+        await expect(this.headerRadioButton).toBeVisible();
+        await expect(this.TestRadioButton).toBeVisible();
+    }
+
+    async hitYesButton(){
+        await this.yesRadioButton.click();
+    }
+
+    async hitImpressiveButton(){
+        await this.impressiveRadioButton.click();
+    }
+
+    async expectNoButton (){
+        await expect(this.noRadioButton).not.toBeChecked();
+    }
+
+    async 
+
+
+}

@@ -3,7 +3,8 @@ import { test, expect } from '@playwright/test';
 import {
     GoToElementPageDemo,
     TextBoxDemo,
-    CheckBoxPage
+    CheckBoxPage,
+    RadioButtonPage
 } from '../../Locator/DemoQA/DemoQA-Test'
 
 test.describe('DemoQA go to Text Box', { tag: '@demoQA' }, () => {
@@ -64,6 +65,38 @@ test.describe('DemoQA go to CheckboxPage', { tag: '@demoQA' }, () => {
         await checkBoxPage.clickHomeLabel();
         await checkBoxPage.expectAllBoxChecked();
     })
+});
 
+test.describe(' Radio Button Test', { tag: '@demoQA'}, () =>{
+    let webPage;
+    let RBPage;
+    test.beforeEach(async ({ page })=>{
+        webPage = new GoToElementPageDemo(page);
+        RBPage = new RadioButtonPage(page);
+        await webPage.gotoElementPage();
+        await webPage.expectSuccessGoToElementsPage();
+    });
 
+    test(' Go to Radio Button Page', async () =>{
+        await RBPage.clickRadioButton();
+        await RBPage.expectRadioButtonPage();
+    });
+
+    test('hit Yes radio button', async() =>{
+        await RBPage.clickRadioButton();
+        await RBPage.expectRadioButtonPage();
+        await RBPage.hitYesButton();
+    });
+
+    test('hit button impressive', async() =>{
+        await RBPage.clickRadioButton();
+        await RBPage.expectRadioButtonPage();
+        await RBPage.hitImpressiveButton();
+    });
+
+    test('hit button No', async() =>{
+        await RBPage.clickRadioButton();
+        await RBPage.expectRadioButtonPage();
+        await RBPage.expectNoButton();
+    })
 });
