@@ -102,7 +102,7 @@ test.describe(' Radio Button Test', { tag: '@demoQA'}, () =>{
     });
 });
 
-test.describe(' Go to Web Table Page', {tag: 'demoQA'}, () =>{
+test.describe(' Go to Web Table Page', {tag: '@demoQA'}, () =>{
     let webPage;
     let webTbl;
     test.beforeEach(async({ page })=>{
