@@ -23,7 +23,7 @@ export class GoToElementPageDemo {
                 await this.elementButton.waitFor({ state: 'visible', timeout: 10000 });
                 await this.elementButton.click();
                 return;
-            } catch(err){
+            } catch (err) {
                 attempt++;
                 if (attempt >= maxAttempts) throw err;
                 await this.page.waitForTimeout(1000 * attempt);
@@ -60,8 +60,8 @@ export class TextBoxDemo {
 
     async gotoTextBoxPage() {
         await this.buttonTextBox.click();
-        await this.page.waitForURL(this.urlTextBox, {timeout: 15000 });
-        await this.logoTextBox.waitFor({ state: 'visible', timeout:15000});
+        await this.page.waitForURL(this.urlTextBox, { timeout: 15000 });
+        await this.logoTextBox.waitFor({ state: 'visible', timeout: 15000 });
     }
 
 
@@ -86,7 +86,7 @@ export class TextBoxDemo {
     }
 
     async hitButtonSubmit() {
-        await this.submitButtoon.waitFor({ state:'visible', timeout:15000});
+        await this.submitButtoon.waitFor({ state: 'visible', timeout: 15000 });
         await this.submitButtoon.scrollIntoViewIfNeeded();
         await this.submitButtoon.click();
 
@@ -203,7 +203,7 @@ export class CheckBoxPage {
         await expect(this.WordFileLabel).toBeVisible();
     }
 
-    async expectAllBoxChecked (){
+    async expectAllBoxChecked() {
         await expect(this.HomeLabel).toBeChecked();
         await expect(this.DesktopLabel).toBeChecked();
         await expect(this.NotesLabel).toBeChecked();
@@ -225,44 +225,60 @@ export class CheckBoxPage {
 
 }
 
-export class RadioButtonPage{
-    constructor(page){
+export class RadioButtonPage {
+    constructor(page) {
         this.page = page;
         this.RadioButtonSideButton = page.locator('li:has-text("Radio Button")');
         this.urlRadioButton = 'https://demoqa.com/radio-button';
         this.headerRadioButton = page.locator('li:has-text("Check Box")');
         this.TestRadioButton = page.getByText('Do you like the site?');
         this.yesRadioButton = page.locator('label:has-text("Yes")');
-        this.impressiveRadioButton  = page.locator('label:has-text("Impressive")');
+        this.impressiveRadioButton = page.locator('label:has-text("Impressive")');
         this.noRadioButton = page.locator('label:has-text("No")');
         this.yesLabel = page.locator('label:has-text("Yes")');
-        this.impressiveLabel  = page.locator('label:has-text("Impressive")');
+        this.impressiveLabel = page.locator('label:has-text("Impressive")');
         this.feedbackRadioButton = page.locator('p.mt-3');
     }
 
-    async clickRadioButton(){
+    async clickRadioButton() {
         await this.RadioButtonSideButton.click();
     }
 
-    async expectRadioButtonPage(){
+    async expectRadioButtonPage() {
         await expect(this.page).toHaveURL(this.urlRadioButton);
         await expect(this.headerRadioButton).toBeVisible();
         await expect(this.TestRadioButton).toBeVisible();
     }
 
-    async hitYesButton(){
+    async hitYesButton() {
         await this.yesRadioButton.click();
     }
 
-    async hitImpressiveButton(){
+    async hitImpressiveButton() {
         await this.impressiveRadioButton.click();
     }
 
-    async expectNoButton (){
+    async expectNoButton() {
         await expect(this.noRadioButton).not.toBeChecked();
     }
 
-    async 
+}
 
+export class webTablePage {
+    constructor(page) {
+        this.page = page;
+        this.webTableSideButton = page.locator('li:has-text("Web Tables")');
+        this.urlWebTable = 'https://demoqa.com/webtables';
+        this.headerWebTable = page.locator('h1:has-text("Web Tables")');
+        this.buttonAdd = page.locator('h1:has-text("Web Tables")');
+    }
 
+    async clickWebTable() {
+        await this.webTableSideButton.click();
+    }
+
+    async expectwebTablePage(){
+        await expect(this.page).toHaveURL(this.urlWebTable);
+        await expect(this.headerWebTable).toBeVisible();
+    }
 }

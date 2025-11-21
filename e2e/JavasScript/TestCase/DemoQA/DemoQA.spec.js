@@ -4,7 +4,8 @@ import {
     GoToElementPageDemo,
     TextBoxDemo,
     CheckBoxPage,
-    RadioButtonPage
+    RadioButtonPage,
+    webTablePage
 } from '../../Locator/DemoQA/DemoQA-Test'
 
 test.describe('DemoQA go to Text Box', { tag: '@demoQA' }, () => {
@@ -98,5 +99,20 @@ test.describe(' Radio Button Test', { tag: '@demoQA'}, () =>{
         await RBPage.clickRadioButton();
         await RBPage.expectRadioButtonPage();
         await RBPage.expectNoButton();
-    })
+    });
+});
+
+test.describe(' Go to Web Table Page', {tag: '@demoQA'}, () =>{
+    let webPage;
+    let webTbl;
+    test.beforeEach(async({ page })=>{
+        webPage= new GoToElementPageDemo(page);
+        webTbl= new webTablePage(page);
+        await webPage.gotoElementPage();
+        await webPage.expectSuccessGoToElementsPage();
+    });
+    test(' go to web table page', async()=>{
+        await webTbl.clickWebTable();
+        await webTbl.expectwebTablePage();
+    });
 });
