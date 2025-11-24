@@ -68,51 +68,72 @@ test.describe('DemoQA go to CheckboxPage', { tag: '@demoQA' }, () => {
     })
 });
 
-test.describe(' Radio Button Test', { tag: '@demoQA'}, () =>{
+test.describe(' Radio Button Test', { tag: '@demoQA' }, () => {
     let webPage;
     let RBPage;
-    test.beforeEach(async ({ page })=>{
+    test.beforeEach(async ({ page }) => {
         webPage = new GoToElementPageDemo(page);
         RBPage = new RadioButtonPage(page);
         await webPage.gotoElementPage();
         await webPage.expectSuccessGoToElementsPage();
     });
 
-    test(' Go to Radio Button Page', async () =>{
+    test(' Go to Radio Button Page', async () => {
         await RBPage.clickRadioButton();
         await RBPage.expectRadioButtonPage();
     });
 
-    test('hit Yes radio button', async() =>{
+    test('hit Yes radio button', async () => {
         await RBPage.clickRadioButton();
         await RBPage.expectRadioButtonPage();
         await RBPage.hitYesButton();
     });
 
-    test('hit button impressive', async() =>{
+    test('hit button impressive', async () => {
         await RBPage.clickRadioButton();
         await RBPage.expectRadioButtonPage();
         await RBPage.hitImpressiveButton();
     });
 
-    test('hit button No', async() =>{
+    test('hit button No', async () => {
         await RBPage.clickRadioButton();
         await RBPage.expectRadioButtonPage();
         await RBPage.expectNoButton();
     });
 });
 
-test.describe(' Go to Web Table Page', {tag: '@demoQA'}, () =>{
+test.describe(' Go to Web Table Page', { tag: '@demoQA' }, () => {
     let webPage;
     let webTbl;
-    test.beforeEach(async({ page })=>{
-        webPage= new GoToElementPageDemo(page);
-        webTbl= new webTablePage(page);
+
+    test.beforeEach(async ({ page }) => {
+        webPage = new GoToElementPageDemo(page);
+        webTbl = new webTablePage(page);
         await webPage.gotoElementPage();
         await webPage.expectSuccessGoToElementsPage();
     });
-    test(' go to web table page', async()=>{
+    test(' go to web table page', async () => {
         await webTbl.clickWebTable();
         await webTbl.expectwebTablePage();
     });
+
+    test(' regist new data on table', async () => {
+        const NEW_EMPLOYEE_DATA = {
+            firstName: 'JSNova', // Diubah sedikit untuk membedakan
+            lastName: 'TesterJS',
+            email: 'js.tester@playwright.dev',
+            age: '32',
+            salary: '85000',
+            department: 'JavaScript QA'
+        };
+        await webTbl.clickWebTable();
+        await webTbl.expectwebTablePage();
+        await webTbl.clickButtonAdd();
+        await webTbl.inputbyAI(firstName, lastName, email, age, salary, department);
+        await webTbl.clickButtonSubmit();
+        await webTbl.expectbyAI(firstName, lastName, email, age, salary, department);
+
+    });
 });
+// await webTbl.RegistNewPerson('Bim','Mo','Bim@bim.com','30','10000000','BUMN');
+//await webTbl.SuccessRegist('Bim','Mo','Bim@bim.com','30','10000000','BUMN');
