@@ -371,6 +371,7 @@ export class webTablePage {
 
     async expectbyAI() {
         const newRowLocator = page.locator(`.rt-tr-group:has-text("${NEW_EMPLOYEE_DATA.firstName}")`);
+        await expect(newRowLocator).toBeVisible();
         await expect(newRowLocator).toContainText(NEW_EMPLOYEE_DATA.lastName);
         await expect(newRowLocator).toContainText(NEW_EMPLOYEE_DATA.age);
         await expect(newRowLocator).toContainText(NEW_EMPLOYEE_DATA.email);

@@ -129,9 +129,9 @@ test.describe(' Go to Web Table Page', { tag: '@demoQA' }, () => {
         await webTbl.clickWebTable();
         await webTbl.expectwebTablePage();
         await webTbl.clickButtonAdd();
-        await webTbl.inputbyAI(firstName, lastName, email, age, salary, department);
+        await webTbl.inputbyAI(NEW_EMPLOYEE_DATA);
         await webTbl.clickButtonSubmit();
-        await webTbl.expectbyAI(firstName, lastName, email, age, salary, department);
+        await webTbl.expectbyAI(NEW_EMPLOYEE_DATA);
 
     });
 });
