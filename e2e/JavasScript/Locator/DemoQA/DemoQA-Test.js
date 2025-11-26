@@ -283,7 +283,7 @@ export class webTablePage {
         this.inputFirstName = page.locator('#firstName');
         this.inputLastName = page.locator('#lastName');
         this.inputEmail = page.locator('#userEmail');
-        this.inputAge = page.locator('#userEmail');
+        this.inputAge = page.locator('#age');
         this.inputSalary = page.locator('#salary');
         this.inputDepartement = page.locator('#department');
         this.submitRegist = page.locator('#submit');
@@ -343,24 +343,24 @@ export class webTablePage {
         await this.buttonAdd.click();
     }
 
-    async inputbyAI() {
+    async inputbyAI(data) {
         await this.inputFirstName.waitFor({ state: 'visible', timeout: 10000 });
-        await this.inputFirstName.fill(firstName);
+        await this.inputFirstName.fill(data.firstName);
 
         await this.inputLastName.waitFor({ state: 'visible', timeout: 10000 });
-        await this.inputLastName.fill(lastName);
+        await this.inputLastName.fill(data.lastName);
 
         await this.inputEmail.waitFor({ state: 'visible', timeout: 10000 });
-        await this.inputEmail.fill(email);
+        await this.inputEmail.fill(data.email);
 
         await this.inputAge.waitFor({ state: 'visible', timeout: 10000 });
-        await this.inputAge.fill(age);
+        await this.inputAge.fill(data.age);
 
         await this.inputSalary.waitFor({ state: 'visible', timeout: 10000 });
-        await this.inputSalary.fill(salary);
+        await this.inputSalary.fill(data.salary);
 
         await this.inputDepartement.waitFor({ state: 'visible', timeout: 10000 });
-        await this.inputDepartement.fill(department);
+        await this.inputDepartement.fill(data.department);
         // await page.locator('#firstName').fill(NEW_EMPLOYEE_DATA.firstName);
         // await page.locator('#lastName').fill(NEW_EMPLOYEE_DATA.lastName);
         // await page.locator('#userEmail').fill(NEW_EMPLOYEE_DATA.email);
@@ -369,13 +369,13 @@ export class webTablePage {
         // await page.locator('#department').fill(NEW_EMPLOYEE_DATA.department);
     }
 
-    async expectbyAI() {
-        const newRowLocator = page.locator(`.rt-tr-group:has-text("${NEW_EMPLOYEE_DATA.firstName}")`);
+    async expectbyAI(data) {
+        const newRowLocator = this.page.locator(`.rt-tr-group:has-text("${data.firstName}")`);
         await expect(newRowLocator).toBeVisible();
-        await expect(newRowLocator).toContainText(NEW_EMPLOYEE_DATA.lastName);
-        await expect(newRowLocator).toContainText(NEW_EMPLOYEE_DATA.age);
-        await expect(newRowLocator).toContainText(NEW_EMPLOYEE_DATA.email);
-        await expect(newRowLocator).toContainText(NEW_EMPLOYEE_DATA.salary);
-        await expect(newRowLocator).toContainText(NEW_EMPLOYEE_DATA.department);
+        await expect(newRowLocator).toContainText(data.lastName);
+        await expect(newRowLocator).toContainText(data.age);
+        await expect(newRowLocator).toContainText(data.email);
+        await expect(newRowLocator).toContainText(data.salary);
+        await expect(newRowLocator).toContainText(data.department);
     }
 }
