@@ -15,18 +15,18 @@ export class GoToElementPageDemo {
     }
 
     async gotoElementPage() {
-        const maxAttempts = 2;
+        const maxAttempts = 3;
         let attempt = 0;
         while (attempt < maxAttempts) {
             try {
-                await this.page.goto(this.url, { timeout: 60000, waitUntil: 'domcontentloaded' });//updated
-                await this.elementButton.waitFor({ state: 'visible', timeout: 10000 });
+                await this.page.goto(this.url, { timeout: 90000, waitUntil: 'domcontentloaded' });//updated
+                await this.elementButton.waitFor({ state: 'visible', timeout: 15000 });
                 await this.elementButton.click();
                 return;
             } catch (err) {
                 attempt++;
                 if (attempt >= maxAttempts) throw err;
-                await this.page.waitForTimeout(1000 * attempt);
+                await this.page.waitForTimeout(2000 * attempt);
             }
         }
 
